@@ -1,0 +1,10 @@
+{
+  "name": "webviewer-ui-issue-reproduction",
+  "scripts": {
+    "move-static": "node move-static.js",
+    "start": "npx http-server -a localhost"
+  },
+  "dependencies": {
+    "@pdftron/webviewer": "11.8.0"
+  }
+}

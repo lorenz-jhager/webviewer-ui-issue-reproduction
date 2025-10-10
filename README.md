@@ -2,9 +2,8 @@
 
 This is a minimal project to reproduce two issues with the WebViewer UI:
 
-- Issue 1: Viewer crashes when it's resized to a narrow width, and the UI has some elements that are 'disabled' (
-  via [disableElements](https://sdk.apryse.com/api/web/UI.html#.disableElements)).
-- Issue 2: Divider can not be enabled / disabled analog to other UI elements.
+- Issue 1 [#1101](https://github.com/ApryseSDK/webviewer-ui/issues/1101): Viewer crashes when it's resized to a narrow width, and the UI has some elements that are 'disabled' (via [disableElements](https://sdk.apryse.com/api/web/UI.html#.disableElements)).
+- Issue 2 [#1102](https://github.com/ApryseSDK/webviewer-ui/issues/1102): Divider can not be enabled / disabled analog to other UI elements.
 
 To reproduce issue:
 

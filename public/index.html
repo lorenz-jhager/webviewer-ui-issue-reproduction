@@ -13,28 +13,17 @@
     WebViewer({
       path: 'lib/webviewer',
       licenseKey: '<LICENSE_KEY>',
+      preloadWorker: ['all']
     }, document.getElementById('viewer'))
         .then(async instance => {
-          const {UI} = instance;
-          const {documentViewer, DocumentViewer} = instance.Core;
-
-          documentViewer.getDisplayModeManager().enableVirtualDisplayMode();
-          UI.setLayoutMode(UI.LayoutMode.Continuous)
-          await UI.loadDocument('https://apryse.s3.amazonaws.com/public/files/samples/WebviewerDemoDoc.pdf');
+          await instance.UI.loadDocument('https://apryse.s3.amazonaws.com/public/files/samples/WebviewerDemoDoc.pdf');
 
           setTimeout(async () => {
-            await UI.loadDocument('/file-1.pdf');
-            documentViewer.setCurrentPage(7, false);
-            // await UI.loadDocument('/file-2.pdf');
-            // documentViewer.setCurrentPage(170, false);
-          }, 2000)
+            await instance.UI.dispose();
+            instance.Core.documentViewer.unmount();
 
-          documentViewer.addEventListener(
-            DocumentViewer.Events.PAGE_NUMBER_UPDATED,
-            (page) => {
-              console.log('PAGE_NUMBER_UPDATED: ' + page);
-            }
-          );
+            document.getElementById('viewer').remove();
+          }, 5000)
         });
   })();
 </script>

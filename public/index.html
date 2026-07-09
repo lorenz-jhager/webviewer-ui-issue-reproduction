@@ -13,86 +13,10 @@
     WebViewer({
       path: 'lib/webviewer',
       licenseKey: '<LICENSE_KEY>',
-      initialDoc: 'https://apryse.s3.amazonaws.com/public/files/samples/WebviewerDemoDoc.pdf',
+      initialDoc: '/files/file.docx',
     }, document.getElementById('viewer'))
-        .then(instance => {
-          const configUI = {
-            modularComponents: {
-              panToolButton: {
-                dataElement: 'panToolButton',
-                type: 'toolButton',
-                toolName: 'Pan'
-              },
-              annotationEditToolButton: {
-                dataElement: 'annotationEditToolButton',
-                type: 'toolButton',
-                toolName: 'AnnotationEdit'
-              },
-              groupedLeftHeaderButtons: {
-                dataElement: 'groupedLeftHeaderButtons',
-                items: [
-                  'panToolButton',
-                  'annotationEditToolButton'
-                ],
-                type: 'groupedItems',
-              }
-            },
-            modularHeaders: {
-              'default-top-header': {
-                dataElement: 'default-top-header',
-                placement: 'top',
-                items: [
-                  'groupedLeftHeaderButtons'
-                ]
-              },
-            }
-          };
-          instance.UI.importModularComponents(configUI);
-
-          const divider1 = new instance.UI.Components.Divider({
-            dataElement: 'divider1'
-          });
-          const divider2 = new instance.UI.Components.Divider({
-            dataElement: 'divider2'
-          });
-          const rectangleToolButton = new instance.UI.Components.ToolButton({
-            dataElement: 'rectangleToolButton',
-            toolName: instance.Core.Tools.ToolNames.RECTANGLE
-          });
-          const defaultHeader =
-              instance.UI.getModularHeader('default-top-header');
-          const groups = defaultHeader.getGroupedItems();
-          groups.forEach(group => {
-            group.setItems([
-              ...group.items,
-              divider1,
-              rectangleToolButton,
-              divider2
-            ])
-          })
-          defaultHeader.setItems([...groups])
-
-
-          const {documentViewer, DocumentViewer} = instance.Core;
-
-          documentViewer.addEventListener(
-              DocumentViewer.Events.TOOL_MODE_UPDATED,
-              (toolMode) => {
-                if (toolMode.name === 'Pan') {
-                  instance.UI.disableElements([
-                    'divider1',
-                    'rectangleToolButton',
-                    'divider2'
-                  ]);
-                } else {
-                  instance.UI.enableElements([
-                    'divider1',
-                    'rectangleToolButton',
-                    'divider2'
-                  ])
-                }
-              }
-          );
+        .then(async instance => {
+          // noop
         });
   })();
 </script>
